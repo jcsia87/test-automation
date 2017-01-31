@@ -31,8 +31,10 @@ public class LoginPage {
         emailAddressField.sendKeys(emailAddress);
     }
 
-    public void clickCreateAccount(){
+    public NewUserPage clickCreateAccount(){
         createAccountButton.click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"submitAccount\"]/span")));
+        return PageFactory.initElements(driver, NewUserPage.class);
     }
 
     public String verifyText(){

@@ -2,6 +2,7 @@ package com.automationpractice.tests;
 
 import com.automationpractice.webpages.HomePage;
 import com.automationpractice.webpages.LoginPage;
+import com.automationpractice.webpages.NewUserPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -19,10 +20,11 @@ public class TestSuite {
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src//main//resources//chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @AfterClass
+    //@AfterClass
     public void tearDown(){
         driver.close();
         driver.quit();
@@ -37,8 +39,17 @@ public class TestSuite {
         Assert.assertEquals(loginPage.verifyText(),"AUTHENTICATION");
         loginPage.setEmailAddress("test@email100.com");
 
-        loginPage.clickCreateAccount();
-        //Assert.assertEquals(loginPage.verifyText(),"CREATE AN ACCOUNT");
-
+        NewUserPage newUserPage = loginPage.clickCreateAccount();
+        Assert.assertEquals(newUserPage.verifyText(),"CREATE AN ACCOUNT");
+        newUserPage.setTitle("mr");
+        newUserPage.setCustomerFirstName("Firstname");
+        newUserPage.setCustomerLastName("Lastname");
+        newUserPage.setPassword("123456");
+        newUserPage.setAddress("Address");
+        newUserPage.setCity("City");
+        newUserPage.setZipCode("123456");
+        newUserPage.setState("Alabama");
+        newUserPage.setCountry("United States");
+        newUserPage.setMobileNumber("123456");
     }
 }
