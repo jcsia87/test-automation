@@ -1,9 +1,12 @@
 package com.automationpractice.webpages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Jeff on 1/30/2017.
@@ -28,9 +31,8 @@ public class LoginPage {
         emailAddressField.sendKeys(emailAddress);
     }
 
-    public NewUserPage clickCreateAccount(){
+    public void clickCreateAccount(){
         createAccountButton.click();
-        return PageFactory.initElements(driver, NewUserPage.class);
     }
 
     public String verifyText(){
